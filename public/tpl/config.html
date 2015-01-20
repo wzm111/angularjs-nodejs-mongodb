@@ -1,0 +1,32 @@
+<div id="todo-form" class="row">
+    <div class="col-sm-8 col-sm-offset-2 text-center">
+        <form>
+            <div class="form-group" style="margin-top: 1em;">
+                <button class="btn btn-primary btn-lg" ng-click="reviseConfig()">保存设置</button>
+            </div>          
+            <div class="form-group">
+                Title:<input type="text" class="form-control input-lg text-cneter" placeholder="网站Title" ng-model="configData.webtitle" />
+            </div>
+            <div class="form-group">
+                Url:<input type="text" class="form-control input-lg text-cneter" placeholder="网站URL" ng-model="configData.website" />
+            </div>
+            <div class="form-group">
+                Keywords:<input type="text" class="form-control input-lg text-cneter" placeholder="关键词" ng-model="configData.keywords" />
+            </div>
+            <div class="form-group">
+                Description:<input type="text" class="form-control input-lg text-cneter" placeholder="网站说明" ng-model="configData.description" />
+            </div>
+            <p>-----------------临时分割符--------------------</p>
+
+            <div ng-repeat="navs in configData.webnav">
+                <div class="form-group">
+                    导航名：
+                    <input type="text" class="navs form-control input-lg text-cneter" placeholder="导航名" ng-model="navs.name" />导航路径：
+                    <input type="text" class="navs form-control input-lg text-cneter" placeholder="导航地址" ng-model="navs.url" />
+                    <a href="javascript:void(0)" ng-click="removeNav($index)">[删除]</a>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-lg" ng-click="addNav()">添加导航</button>
+        </form>
+    </div>
+</div>

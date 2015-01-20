@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" ng-controller="AppCtrl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="keywords" content={{global.keywords}}>
+<meta name="description" content={{global.description}}>
+<title>{{global.webtitle}}-{{global.website}}</title>
+<link rel="stylesheet" href="css/bootstrap.css">
+<style type="text/css">
+.header{ background: #eee; }
+.header h3{line-height: 2em; margin: 0;}
+.index{ padding: 10px 0;}
+.index a{ display: inline-block; margin:0 20px;}
+.search,.set{ margin:1em;}
+.navs{ width: 30%; margin-right: 5%; display: inline-block;}
+.bai{ background: #fff; color:#333;}
+.hei{ background: #333; color: #f5f5f5;}
+.ng-cloak {display: none;}
+</style>
+</head>
+
+<body ng-cloak class="ng-cloak">
+    <div class="container">
+        <a href="javascript:void(0)" class="getBai">[白色]</a>
+        <a href="javascript:void(0)" class='getHei'>[黑色]</a>
+        <div class="text-center header">
+            <div class="index"><a href={{global.website}}#{{navs.url}} ng-repeat="navs in global.webnav">{{navs.name}}</a></div>
+            <h3>我的记事本 _<span class="label label-info">{{$root.global.length}}</span></h3>
+        </div>
+        <nav><a href="#/demos/" ></a></nav>
+        <div ng-view></div>
+    </div>
+    
+</body>
+<script src="lib/reserveLoadjs/reserveLoad.min.js"></script>
+<script>
+reserveLoad(
+    'lib/angular/angular.min.js',
+    'lib/angular/angular-route.min.js',
+    'lib/angular/angular-resource.min.js',
+    'js/router.js',
+    'js/main.js',
+    'js/setGlobal.js',
+    function (errorUrl) {
+      if (errorUrl) {
+        alert('Error loading: ' + errorUrl);
+      } else {
+        angular.bootstrap(document, ['demoCat']);//指定ng-app
+      }
+    });
+</script>
+</html>

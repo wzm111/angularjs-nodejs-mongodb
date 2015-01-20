@@ -1,0 +1,39 @@
+<div id="todo-form" class="row">
+    <div class="col-sm-offset-2" style="padding:10px 20px;">标题：{{formData.title || '标题 ！' }}</div>
+    <div class="col-sm-offset-2" style="padding:10px 20px;">内容：{{formData.cont || '内容 ！'}}</div>
+    <div class="col-sm-8 col-sm-offset-2 text-center">
+        <form>
+            <div class="form-group">
+                <input type="text" class="form-control input-lg text-cneter" placeholder="标题" ng-model="formData.title" />
+                <p>-----------------临时分割符--------------------</p>
+                <textarea class="form-control input-lg text-cneter" placeholder="这里写内容" ng-model="formData.cont">
+                </textarea>
+            </div>
+            <button class="btn btn-primary btn-lg" ng-click="creatDemo()" ng-show="btnShow">添加</button>
+            <button class="btn btn-primary btn-lg" ng-click="deleteDemo()" ng-show="btnShow">删除</button>
+            --------<button class="btn btn-primary btn-lg" ng-click="reviseDemo()">修改</button>
+        </form>
+    </div>
+</div>
+
+<div id="todo-list" class="row">
+    <div class="set">全选：
+        <input type="checkbox" ng-click='allChecked()' ng-checked='allFlags'>
+        <span>{{demos.length}}/{{listLen}}</span> 
+        显示：
+        <a href="javascript:void(0)" class="label label-info" ng-click="getList(0)">全部</a>
+        <a href="javascript:void(0)" class="label label-info" ng-click="getList(5)">5</a>
+        <a href="javascript:void(0)" class="label label-info" ng-click="getList(10)">10</a>
+    </div>
+    <div class="search">搜索查询：<input type='text' ng-model='search' placeholder="输入关键字" /></div>
+    <div class="col-sm-12" style="padding-left:4em;">
+        <div class="cb" ng-repeat="todo in demos | filter:search">
+            {{$index + 1}}、
+            <label>
+                <input type="checkbox" ng-click='getSelect(todo._id)' ng-checked='flags' />
+            </label>
+            标题：<a href="#/{{todo._id}}">{{todo.title}}</a>-[{{todo.time.seconds}}]
+            <a href="javascript:void(0)" ng-click="getRevise(todo._id)">[修改]</a>
+        </div>
+    </div>
+</div>
